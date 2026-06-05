@@ -5,25 +5,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_TechZone.Controllers
 {
-    public class CategoryController : Controller
+    public class BrandController : Controller
     {
         private readonly DataContext _dataContext;
-        public CategoryController(DataContext dataContext)
+        public BrandController (DataContext dataContext)
         {
             _dataContext = dataContext;
         }
         public async Task<IActionResult> Index(string Slug = "")
         {
-            CategoryModel categories = _dataContext.Categories
-                .Where(c => c.Slug == Slug)
+            BrandModel brand = _dataContext.Brands
+                .Where(b => b.Slug == Slug)
                 .FirstOrDefault();
-            if(categories == null)
+            if(brand == null)
             {
                 return RedirectToAction("Index");
             }
-            var productByCategory = _dataContext.Products
-                .Where(p => p.CategoryId == categories.Id);
-            return View(await productByCategory.OrderByDescending(p => p.Id).ToListAsync());
+            var productByBrand = _dataContext.Products
+                .Where(p => p.BrandId == brand.Id);
+            return View(await productByBrand.OrderByDescending(p => p.Id).ToListAsync());
         }
     }
 }

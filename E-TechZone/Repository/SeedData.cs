@@ -15,8 +15,8 @@ namespace E_TechZone.Repository
                 BrandModel dell = new BrandModel { Name = "Apple", Slug = "apple", Description = "Latest Apple products", Status = 1 };
                 BrandModel hp = new BrandModel { Name = "Samsung", Slug = "samsung", Description = "Latest Samsung products", Status = 1 };
                 _context.Products.AddRange(
-                    new ProductModel { Name = "Macbook", Slug = "macbook", Description = "The latest Macbook with advanced features.", Price = 1099.99m, Image = "https://example.com/images/macbook.jpg", Category = macbook, Brand = dell },
-                    new ProductModel { Name = "Pc", Slug = "pc", Description = "The latest Pc with advanced features.", Price = 1199.99m, Image = "https://example.com/images/pc.jpg", Category = pc, Brand = hp }
+                    new ProductModel { Name = "Macbook", Slug = "macbook", Description = "The latest Macbook with advanced features.", Price = 1099.99m, Image = "1.jpg", Category = macbook, Brand = dell },
+                    new ProductModel { Name = "Pc", Slug = "pc", Description = "The latest Pc with advanced features.", Price = 1199.99m, Image = "2.jpg", Category = pc, Brand = hp }
                 );
                 _context.SaveChanges();
             }
