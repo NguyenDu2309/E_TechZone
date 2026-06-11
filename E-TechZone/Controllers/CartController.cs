@@ -26,5 +26,22 @@ namespace E_TechZone.Controllers
         {
             return View("~/Views/Checkout/Index.cshtml");
         }
+        public async Task<IActionResult> Add(int Id)
+        {
+            ProductModel product = await _dataContext.Products.FindAsync(Id);
+            List<CartItemModel> cart = HttpContext.Session.GetJson<List<CartItemModel>>("Cart") ?? new List<CartItemModel>();
+            CartItemModel cartItem = cart.Where(x => x.ProductId == Id).FirstOrDefault();
+            if (cartItem == null)
+            {
+                cart.Add(new CartItemModel(product));
+            }
+            else
+            {
+                cartItem.Quantity++;
+            }
+
+            HttpContext.Session.SetJson("Cart", cart);
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
     }
 }
